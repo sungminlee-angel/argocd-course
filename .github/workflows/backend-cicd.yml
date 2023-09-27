@@ -13,7 +13,7 @@ env:
  
 permissions:
   id-token: write
-  
+
 jobs:
   condition_check:
     runs-on: ubuntu-latest
@@ -37,20 +37,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create Version Tag
-        id: create_tag
-        uses: mathieudutour/github-tag-action@v5.5
         with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create Release Tag
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-            tag_name: ${{ env.TAG }}
-            release_name: ${{ env.TAG }}
-            draft: false
-            prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Tag
+        run: |
+          git tag ${{ env.TAG }}
+          git push origin ${{ env.TAG }}
       - name: notice when job fails
         if: failure()
         uses: 8398a7/action-slack@v3.2.0
