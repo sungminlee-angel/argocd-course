@@ -38,6 +38,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Create Version Tag
+        id: create_tag
+        uses: mathieudutour/github-tag-action@v5.5
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release Tag
         uses: actions/create-release@v1
         env:
