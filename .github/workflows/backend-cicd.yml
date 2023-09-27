@@ -38,13 +38,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Create Release Tag
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: git tagging
-        run: |
-          git tag ${{ env.TAG }}
-          git push origin "${{ env.TAG }}"
-        
+            tag_name: ${{ env.TAG }}
+            release_name: ${{ env.TAG }}
+            draft: false
+            prerelease: false
       - name: notice when job fails
         if: failure()
         uses: 8398a7/action-slack@v3.2.0
