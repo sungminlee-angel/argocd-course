@@ -13,8 +13,7 @@ env:
  
 permissions:
   id-token: write
-  contents: read
-
+  
 jobs:
   condition_check:
     runs-on: ubuntu-latest
