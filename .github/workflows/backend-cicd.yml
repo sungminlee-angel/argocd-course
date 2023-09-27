@@ -38,10 +38,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: git tagging
         run: |
           git tag ${{ env.TAG }}
           git push origin "${{ env.TAG }}"
+        
       - name: notice when job fails
         if: failure()
         uses: 8398a7/action-slack@v3.2.0
