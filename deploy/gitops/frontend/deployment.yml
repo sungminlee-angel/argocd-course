@@ -15,3 +15,6 @@ spec:
       containers:
         - name: humancat-frontend
           image: humancat-frontend-image
+          envFrom:
+            - configMapRef:
+                name: backend-conf
