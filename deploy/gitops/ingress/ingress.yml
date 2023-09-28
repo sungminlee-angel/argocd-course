@@ -1,8 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd
-  namespace: argocd
+  name: humancat
   annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -12,7 +11,7 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
     alb.ingress.kubernetes.io/success-codes: '200'
     alb.ingress.kubernetes.io/security-groups: sg-0d937e1546ecd483b
-    alb.ingress.kubernetes.io/subnets: subnet-0781036abf7e833d5, subnet-0db4ae6f3a2b95441, subnet-0dd67f49ee4deb66f
+    alb.ingress.kubernetes.io/subnets: subnet-0ff73ca9c1b7d0f1d, subnet-0ca9982b65a6fc4dd, subnet-0b4f06140976d8353
 spec:
   ingressClassName: alb
   rules:
