@@ -1,4 +1,4 @@
-name: "[BACKEND] Build"
+name: "[FRONTEND] Build"
 on:
   workflow_dispatch:
     inputs:
