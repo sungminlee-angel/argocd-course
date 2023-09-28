@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "`x.y.z-build.NN` 형태로 버전을 입력해주세요. (ex. 0.1.0-build.05)"
+        description: "`x.y.z-front.NN` 형태로 버전을 입력해주세요. (ex. 0.1.0-front.05)"
         required: true
-        default: 0.0.1-build.00
+        default: 0.0.1-front.00
 env:
   TAG: ${{ github.event.inputs.tag }}
   SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: check tag format
         run: |
-          if [[ !(${{ env.TAG }} =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\-build\.[0-9]{2}$) ]];
+          if [[ !(${{ env.TAG }} =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\-front\.[0-9]{2}$) ]];
           then
             echo "You entered an incorrect tag format."
             exit 1
