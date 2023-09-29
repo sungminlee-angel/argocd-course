@@ -1,10 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - deployment.yml
-  - service.yml
+- deployment.yml
+- service.yml
 images:
-  - name: humancat-backend-image
-    newName: 909622006439.dkr.ecr.ap-northeast-2.amazonaws.com/humancat-backend
-    newTag: 0.0.1-backend.02
+- name: humancat-backend-image
+  newName: 909622006439.dkr.ecr.ap-northeast-2.amazonaws.com/humancat-backend
+  newTag: 0.0.1-backend.02
+- name: humancat-backend-image}
+  newName: 909622006439.dkr.ecr.ap-northeast-2.amazonaws.com/humancat-backend
+  newTag: 0.0.1-backend.03
 namespace: gitops
