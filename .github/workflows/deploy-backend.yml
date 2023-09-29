@@ -101,10 +101,11 @@ jobs:
     - name: Update Kubernetes resources
       run: |
         cd deploy/gitops/backend
-        kustomize edit set image humancat-backend-image}=${{ env.BACKEND_ECR_REPOSITORY }}:${{ env.TAG }}
+        kustomize edit set image humancat-backend-image=${{ env.BACKEND_ECR_REPOSITORY }}:${{ env.TAG }}
     - name: Commit & Push Image 
       uses: actions-js/push@master
       with:
+        message: '[DEPLOY] Update Image ${{ env.BACKEND_ECR_REPOSITORY }}:${{ env.TAG }}'
         branch: master
         github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Notice when job success
