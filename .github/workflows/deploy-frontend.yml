@@ -1,4 +1,4 @@
-name: "[FRONTEND] Build"
+name: "[FRONTEND] Build & Deploy"
 on:
   workflow_dispatch:
     inputs:
@@ -10,10 +10,11 @@ env:
   TAG: ${{ github.event.inputs.tag }}
   SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
   FRONTEND_ECR_REPOSITORY: ${{ secrets.FRONTEND_ECR_REPOSITORY }}
- 
+
 permissions:
   id-token: write
-
+  contents: write
+  
 jobs:
   condition_check:
     runs-on: ubuntu-latest
@@ -71,7 +72,7 @@ jobs:
         FRONTEND_ECR_REPOSITORY: ${{ env.FRONTEND_ECR_REPOSITORY }}
         IMAGE_TAG: ${{ env.TAG }}
       run: |
-        docker build -t $FRONTEND_ECR_REPOSITORY:$IMAGE_TAG .
+        docker build -t FRONTEND_ECR_REPOSITORY:$IMAGE_TAG .
     - id: login-ecr
       name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
@@ -81,7 +82,7 @@ jobs:
         FRONTEND_ECR_REPOSITORY: ${{ env.FRONTEND_ECR_REPOSITORY }}
         IMAGE_TAG: ${{ env.TAG }}
       run: |
-        docker push $FRONTEND_ECR_REPOSITORY:$IMAGE_TAG
+        docker push FRONTEND_ECR_REPOSITORY:$IMAGE_TAG
     - name: Notice when job fails
       if: always()
       uses: 8398a7/action-slack@v3.2.0
@@ -89,4 +90,29 @@ jobs:
         status: ${{job.status}}
         fields: repo,workflow,job
         author_name: Github Action Slack
-  
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Kustomize
+      uses: imranismail/setup-kustomize@v1
+    - name: Checkout kustomize repository
+      uses: actions/checkout@v3
+    - name: Update Kubernetes resources
+      run: |
+        cd deploy/gitops/frontend
+        kustomize edit set image humancat-frontend-image=${{ env.FRONTEND_ECR_REPOSITORY }}:${{ env.TAG }}
+    - name: Commit & Push Image 
+      uses: actions-js/push@master
+      with:
+        message: '[DEPLOY] Update Image ${{ env.FRONTEND_ECR_REPOSITORY }}:${{ env.TAG }}'
+        branch: master
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Notice when job success
+      if: success()
+      uses: 8398a7/action-slack@v3.2.0
+      with:
+        status: ${{job.status}}
+        fields: repo,workflow,job
+        author_name: Success to Deploy on Kubernetes (${{ env.FRONTEND_ECR_REPOSITORY }}:${{ env.TAG }})
+        color: good
