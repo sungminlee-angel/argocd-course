@@ -85,7 +85,7 @@ jobs:
         FRONTEND_ECR_REPOSITORY: ${{ env.FRONTEND_ECR_REPOSITORY }}
         IMAGE_TAG: ${{ env.TAG }}
       run: |
-        docker push FRONTEND_ECR_REPOSITORY:$IMAGE_TAG
+        docker push $FRONTEND_ECR_REPOSITORY:$IMAGE_TAG
     - name: Notice when job fails
       if: always()
       uses: 8398a7/action-slack@v3.2.0
