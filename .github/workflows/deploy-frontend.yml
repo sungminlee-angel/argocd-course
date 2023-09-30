@@ -77,7 +77,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Update Kubernetes resources
       run: |
-        cd deploy/gitops/frontend
+        cd deploy/gitops/frontend/gitops
         kustomize edit set image humancat-frontend-image=${{ env.FRONTEND_ECR_REPOSITORY }}:${{ needs.build.outputs.tag }}
     - name: Commit & Push Image 
       uses: actions-js/push@master
