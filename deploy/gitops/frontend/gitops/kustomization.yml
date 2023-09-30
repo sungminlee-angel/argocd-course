@@ -3,9 +3,9 @@ kind: Kustomization
 patchesStrategicMerge:
 - deployment.yml
 resources:
-- ../base 
+- ../base
 images:
 - name: humancat-frontend-image
   newName: 909622006439.dkr.ecr.ap-northeast-2.amazonaws.com/humancat-frontend
-  newTag: "20230930.170803"
+  newTag: "20230930.180740"
 namespace: gitops
