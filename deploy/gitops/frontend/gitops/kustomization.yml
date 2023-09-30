@@ -1,8 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources:
+patchesStrategicMerge:
 - deployment.yml
-- service.yml
+resources:
+- ../base 
 images:
 - name: humancat-frontend-image
   newName: 909622006439.dkr.ecr.ap-northeast-2.amazonaws.com/humancat-frontend
