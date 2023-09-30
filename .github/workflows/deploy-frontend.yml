@@ -79,6 +79,7 @@ jobs:
       run: |
         cd deploy/gitops/frontend
         kustomize edit set image humancat-frontend-image=${{ env.FRONTEND_ECR_REPOSITORY }}:${{ needs.build.outputs.tag }}
+    - name: Commit & Push Image 
       uses: actions-js/push@master
       with:
         message: '[DEPLOY] Update Image ${{ env.FRONTEND_ECR_REPOSITORY }}:${{ needs.build.outputs.tag }}'
