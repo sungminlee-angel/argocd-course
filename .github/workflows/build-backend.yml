@@ -10,7 +10,7 @@ env:
   TAG: ${{ github.event.inputs.tag }}
   SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
   BACKEND_ECR_REPOSITORY: ${{ secrets.BACKEND_ECR_REPOSITORY }}
-  BUILD_PATH: "/humancat-backend-build"
+  BUILD_PATH: "~/humancat-backend-build-tmp"
  
 permissions:
   id-token: write
