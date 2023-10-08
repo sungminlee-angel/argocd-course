@@ -4,18 +4,12 @@ metadata:
   name: humancat-frontend-rollout
   
 spec:
-  replicas: 5
+  replicas: 2
   strategy:
-    canary:
-      steps:
-      - setWeight: 20
-      - pause: {}
-      - setWeight: 40
-      - pause: {duration: 10}
-      - setWeight: 60
-      - pause: {duration: 10}
-      - setWeight: 80
-      - pause: {duration: 10}
+    blueGreen:
+      activeService: humancat-frontend-bluegreen-rollout-active
+      previewService: humancat-frontend-bluegreen-rollout-preview
+      autoPromotionEnabled: false
   revisionHistoryLimit: 2
   selector:
     matchLabels:

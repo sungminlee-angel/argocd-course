@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: humancat-frontend-rollout
+    app: humancat-frontend-bluegreen-rollout-active
   ports:
     - protocol: TCP
       port: 80
