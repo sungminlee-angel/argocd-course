@@ -7,7 +7,7 @@ spec:
   replicas: 2
   strategy:
     blueGreen:
-      activeService: humancat-frontend-bluegreen-rollout-active
+      activeService: humancat-frontend-active
       previewService: humancat-frontend-bluegreen-rollout-preview
       autoPromotionEnabled: false
   revisionHistoryLimit: 2
