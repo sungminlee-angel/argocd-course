@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: humancat-frontend-rollout-blue-green
-          image: humancat-frontend-rollout-image
+          image: humancat-frontend-rollout-blue-green-image
           envFrom:
             - configMapRef:
                 name: backend-conf
