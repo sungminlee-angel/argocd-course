@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: humancat-frontend-rollout
+  name: humancat-frontend-rollout-blue-green
   
 spec:
   replicas: 2
@@ -13,15 +13,15 @@ spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: humancat-frontend-rollout
+      app: humancat-frontend-rollout-blue-green
   template:
     metadata:
-      name: humancat-frontend-rollout
+      name: humancat-frontend-rollout-blue-green
       labels:
-        app: humancat-frontend-rollout
+        app: humancat-frontend-rollout-blue-green
     spec:
       containers:
-        - name: humancat-frontend-rollout
+        - name: humancat-frontend-rollout-blue-green
           image: humancat-frontend-rollout-image
           envFrom:
             - configMapRef:
