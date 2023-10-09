@@ -7,10 +7,10 @@ spec:
   replicas: 2
   strategy:
     blueGreen:
-      activeService: humancat-frontend-svc
-      previewService: humancat-frontend-bluegreen-rollout-preview
+      activeService: humancat-frontend-active-svc
+      previewService: humancat-frontend-preview-svc
       autoPromotionEnabled: false
-  revisionHistoryLimit: 2
+  revisionHistoryLimit: 5
   selector:
     matchLabels:
       app: humancat-frontend-rollout-blue-green

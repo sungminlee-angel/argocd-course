@@ -4,7 +4,8 @@ resources:
 - rollout.yml
 - service_active.yml
 - service_preview.yml
-- ingress.yml
+- ingress_active.yml
+- ingress_preview.yml
 images:
 - name: humancat-frontend-rollout-blue-green-image
   newName: 909622006439.dkr.ecr.ap-northeast-2.amazonaws.com/humancat-frontend
