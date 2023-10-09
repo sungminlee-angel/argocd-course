@@ -10,6 +10,7 @@ spec:
       activeService: humancat-frontend-active-svc
       previewService: humancat-frontend-preview-svc
       autoPromotionEnabled: false
+      scaleDownDelaySeconds: 10
   revisionHistoryLimit: 5
   selector:
     matchLabels:
