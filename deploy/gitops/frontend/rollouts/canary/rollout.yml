@@ -7,6 +7,12 @@ spec:
   replicas: 5
   strategy:
     canary:
+      canaryService: humancat-frontend-canary-svc
+      stableService: humancat-frontend-stable-svc
+      trafficRouting:
+        alb:
+          ingress: humancat-canary-ingress
+          servicePort: 80
       steps:
       - setWeight: 10
       - pause: {}
