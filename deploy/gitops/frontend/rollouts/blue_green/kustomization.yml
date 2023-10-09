@@ -8,6 +8,6 @@ resources:
 - ingress_preview.yml
 images:
 - name: humancat-frontend-rollout-blue-green-image
-  newName: 909622006439.dkr.ecr.ap-northeast-2.amazonaws.com/humancat-frontend
-  newTag: "20231006.172126"
+  newName: <ECR이미지>
+  newTag: <이미지태그>
 namespace: gitops

@@ -8,15 +8,13 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 20
+      - setWeight: 10
       - pause: {}
       - setWeight: 40
-      - pause: {duration: 10}
-      - setWeight: 60
-      - pause: {duration: 10}
+      - pause: {}
       - setWeight: 80
-      - pause: {duration: 10}
-  revisionHistoryLimit: 2
+      - pause: {}
+  revisionHistoryLimit: 5
   selector:
     matchLabels:
       app: humancat-frontend-canary-rollout
