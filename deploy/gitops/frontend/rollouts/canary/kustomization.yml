@@ -4,6 +4,7 @@ resources:
 - rollout.yml
 - service_stable.yml
 - service_canary.yml
+- service_root.yml
 - ingress.yml
 images:
 - name: humancat-frontend-canary-rollout-image
