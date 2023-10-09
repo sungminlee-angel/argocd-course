@@ -12,6 +12,7 @@ spec:
       trafficRouting:
         alb:
           ingress: humancat-canary-ingress
+          rootService: rhumancat-frontend-root-svc
           servicePort: 80
       steps:
       - setWeight: 10
