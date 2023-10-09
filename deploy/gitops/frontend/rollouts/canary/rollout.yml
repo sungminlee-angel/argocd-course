@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: humancat-frontend-canary-rollout
-  
 spec:
   replicas: 5
   strategy:
@@ -12,7 +11,7 @@ spec:
       trafficRouting:
         alb:
           ingress: humancat-canary-ingress
-          rootService: rhumancat-frontend-root-svc
+          rootService: humancat-frontend-root-svc
           servicePort: 80
       steps:
       - setWeight: 10
