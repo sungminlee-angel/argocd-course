@@ -19,7 +19,7 @@ spec:
       - path: /
         backend:
           service:
-            name: humancat-frontend-root-svc
+            name: humancat-frontend-canary-svc
             port:
               number: 80
         pathType: Prefix
