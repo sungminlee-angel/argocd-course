@@ -20,7 +20,6 @@ spec:
       app: humancat-frontend-canary-rollout
   template:
     metadata:
-      name: humancat-frontend-canary-rollout
       labels:
         app: humancat-frontend-canary-rollout
     spec:
