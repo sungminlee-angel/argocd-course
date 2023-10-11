@@ -5,5 +5,5 @@ resources:
 images:
 - name: humancat-backend-image
   newName: AWSECR/humancat-backend
-  newTag: 0.0.1-backend.01
+  newTag: <이미지태그>
 namespace: gitops
