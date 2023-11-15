@@ -7,4 +7,4 @@ metadata:
     alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=600
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
     alb.ingress.kubernetes.io/success-codes: '301'
-    alb.ingress.kubernetes.io/subnets: <서브넷ID>, <서브넷ID>, <서브넷ID>
+    alb.ingress.kubernetes.io/subnets:  subnet-04d57b99b4c752d69, subnet-017e3289d2659999d, subnet-068683fd03aabe75e
